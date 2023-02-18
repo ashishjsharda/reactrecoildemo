@@ -11,3 +11,12 @@ const textState = atom({
     key: 'textState',
     default: '',
 });
+
+function CharacterCounter() {
+    return (
+        <div>
+            <TextInput />
+            <CharacterCount />
+        </div>
+    );
+}
