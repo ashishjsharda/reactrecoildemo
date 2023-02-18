@@ -45,3 +45,9 @@ const charCountState = selector({
         return text.length;
     },
 });
+
+function CharacterCount() {
+    const count = useRecoilValue(charCountState);
+
+    return <>Character Count: {count}</>;
+}
