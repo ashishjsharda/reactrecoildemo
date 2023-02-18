@@ -1,53 +1,14 @@
 import React from 'react';
-import {
-    RecoilRoot,
-    atom,
-    selector,
-    useRecoilState,
-    useRecoilValue,
-} from "recoil";
+import ReactDOM from 'react-dom/client';
+import './index.css';
+import App from './App';
+import reportWebVitals from './reportWebVitals';
 
-const textState = atom({
-    key: 'textState',
-    default: '',
-});
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
+);
 
-function CharacterCounter() {
-    return (
-        <div>
-            <TextInput />
-            <CharacterCount />
-        </div>
-    );
-}
 
-function TextInput() {
-    const [text, setText] = useRecoilState(textState);
-
-    const onChange = (event) => {
-        setText(event.target.value);
-    };
-
-    return (
-        <div>
-            <input type="text" value={text} onChange={onChange} />
-            <br />
-            Echo: {text}
-        </div>
-    );
-}
-
-const charCountState = selector({
-    key: 'charCountState',
-    get: ({ get }) => {
-        const text = get(textState);
-
-        return text.length;
-    },
-});
-
-function CharacterCount() {
-    const count = useRecoilValue(charCountState);
-
-    return <>Character Count: {count}</>;
-}
